@@ -77,6 +77,14 @@ void SymbolLayer::parsePaints(const JSVal& layer) {
     });
 }
 
+void SymbolLayer::cascade(const StyleCascadeParameters& parameters) {
+    paints.cascade(parameters);
+}
+
+bool SymbolLayer::hasTransitions() const {
+    return paints.hasTransitions();
+}
+
 void SymbolLayer::recalculate(const StyleCalculationParameters& parameters) {
     paints.removeExpiredTransitions(parameters.now);
 

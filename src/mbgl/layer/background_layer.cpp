@@ -1,5 +1,6 @@
 #include <mbgl/layer/background_layer.hpp>
 #include <mbgl/style/property_parsing.hpp>
+#include <mbgl/renderer/bucket.hpp>
 
 namespace mbgl {
 
@@ -9,6 +10,14 @@ void BackgroundLayer::parsePaints(const JSVal& layer) {
         parseProperty<Function<Color>>("background-color", PropertyKey::BackgroundColor, paint, value);
         parseProperty<PiecewiseConstantFunction<Faded<std::string>>>("background-pattern", PropertyKey::BackgroundImage, paint, value, "background-pattern-transition");
     });
+}
+
+void BackgroundLayer::cascade(const StyleCascadeParameters& parameters) {
+    paints.cascade(parameters);
+}
+
+bool BackgroundLayer::hasTransitions() const {
+    return paints.hasTransitions();
 }
 
 void BackgroundLayer::recalculate(const StyleCalculationParameters& parameters) {

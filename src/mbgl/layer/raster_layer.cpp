@@ -22,6 +22,14 @@ void RasterLayer::parsePaints(const JSVal& layer) {
     });
 }
 
+void RasterLayer::cascade(const StyleCascadeParameters& parameters) {
+    paints.cascade(parameters);
+}
+
+bool RasterLayer::hasTransitions() const {
+    return paints.hasTransitions();
+}
+
 void RasterLayer::recalculate(const StyleCalculationParameters& parameters) {
     paints.removeExpiredTransitions(parameters.now);
 

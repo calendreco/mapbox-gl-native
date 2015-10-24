@@ -16,6 +16,14 @@ void CircleLayer::parsePaints(const JSVal& layer) {
     });
 }
 
+void CircleLayer::cascade(const StyleCascadeParameters& parameters) {
+    paints.cascade(parameters);
+}
+
+bool CircleLayer::hasTransitions() const {
+    return paints.hasTransitions();
+}
+
 void CircleLayer::recalculate(const StyleCalculationParameters& parameters) {
     paints.removeExpiredTransitions(parameters.now);
 

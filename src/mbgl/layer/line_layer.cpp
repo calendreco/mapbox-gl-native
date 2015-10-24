@@ -33,6 +33,14 @@ void LineLayer::parsePaints(const JSVal& layer) {
     });
 }
 
+void LineLayer::cascade(const StyleCascadeParameters& parameters) {
+    paints.cascade(parameters);
+}
+
+bool LineLayer::hasTransitions() const {
+    return paints.hasTransitions();
+}
+
 void LineLayer::recalculate(const StyleCalculationParameters& parameters) {
     paints.removeExpiredTransitions(parameters.now);
 

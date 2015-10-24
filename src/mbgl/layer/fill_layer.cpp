@@ -21,6 +21,14 @@ void FillLayer::parsePaints(const JSVal& layer) {
     });
 }
 
+void FillLayer::cascade(const StyleCascadeParameters& parameters) {
+    paints.cascade(parameters);
+}
+
+bool FillLayer::hasTransitions() const {
+    return paints.hasTransitions();
+}
+
 void FillLayer::recalculate(const StyleCalculationParameters& parameters) {
     paints.removeExpiredTransitions(parameters.now);
 

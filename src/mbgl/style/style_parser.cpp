@@ -184,16 +184,8 @@ void StyleParser::parseLayer(const std::string& id, const JSVal& value, util::pt
             return;
         }
 
-        layer = StyleLayer::create(reference->type);
+        layer = reference->clone();
         layer->id = id;
-        layer->type = reference->type;
-        layer->source = reference->source;
-        layer->sourceLayer = reference->sourceLayer;
-        layer->filter = reference->filter;
-        layer->minZoom = reference->minZoom;
-        layer->maxZoom = reference->maxZoom;
-        layer->visibility = reference->visibility;
-        layer->layout = reference->layout;
 
     } else {
         // Otherwise, parse the source/source-layer/filter/render keys to form the bucket.
