@@ -52,7 +52,7 @@ dependencies:
  - Apple Command Line Tools (available at [Apple Developer](https://developer.apple.com/downloads))
  - [Homebrew](http://brew.sh)
  - [xcpretty](https://github.com/supermarin/xcpretty)
- - [Cask](http://caskroom.io/) (for building Android)
+ - [Cask](http://caskroom.io/) (if building for Android)
 
 ## 3: Setting up a development environment & building
 
