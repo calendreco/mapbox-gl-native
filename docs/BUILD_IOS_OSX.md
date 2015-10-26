@@ -4,7 +4,7 @@ This section is for people contributing to Mapbox GL directly in the context of 
 
 ### Build
 
-1. Install [appledoc](http://appledoc.gentlebytes.com/appledoc/) 2.2v963 for API docs generation (only this exact version works right now ([#2117](https://github.com/mapbox/mapbox-gl-native/issues/2117)).
+1. Install [appledoc](http://appledoc.gentlebytes.com/appledoc/) for API docs generation.
 
    ```
    curl -L -o appledoc.zip https://github.com/tomaz/appledoc/releases/download/v2.2-963/appledoc.zip
