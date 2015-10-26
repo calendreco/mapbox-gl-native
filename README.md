@@ -17,7 +17,7 @@ If you want to use products _based on_ Mapbox GL, check out:
 
 ## Targets
 
-* Linux
+* Ubuntu Linux
 * OS X 10.9+
 * iOS 7.0+
   * iPhone 4S and above (5, 5c, 5s, 6, 6 Plus)
