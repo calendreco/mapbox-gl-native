@@ -56,7 +56,7 @@ dependencies:
 
 ## 3: Setting up a development environment & building
 
-This depends on what operating system you're using, and what platform you're
+This depends on what operating system(s) you're using, and what platform(s) you're
 developing for:
 
 **on OS X**
