@@ -6,11 +6,34 @@
 
 namespace mbgl {
 
+template <typename T>
+void LayoutProperty<T>::parse(const char * name, const JSVal& layout) {
+    parsedValue = detail::parseProperty<Function<T>>(name, layout[name]);
+}
+
+template <typename T>
+T LayoutProperty<T>::calculate(float z) const {
+    return parsedValue
+        ? mapbox::util::apply_visitor(PropertyEvaluator<T>(z), *parsedValue)
+        : value;
+}
+
+void LineLayoutProperties::parse(const JSVal& value) {
+    cap.parse("line-cap", value);
+    join.parse("line-join", value);
+    miterLimit.parse("line-miter-limit", value);
+    roundLimit.parse("line-round-limit", value);
+}
+
+void LineLayoutProperties::calculate(LineLayoutProperties& out, float z) const {
+    out.cap.value = cap.calculate(z);
+    out.join.value = join.calculate(z);
+    out.miterLimit.value = miterLimit.calculate(z);
+    out.roundLimit.value = roundLimit.calculate(z);
+}
+
 void LineLayer::parseLayout(const JSVal& value) {
-    parseProperty<Function<CapType>>("line-cap", PropertyKey::LineCap, layout, value);
-    parseProperty<Function<JoinType>>("line-join", PropertyKey::LineJoin, layout, value);
-    parseProperty<Function<float>>("line-miter-limit", PropertyKey::LineMiterLimit, layout, value);
-    parseProperty<Function<float>>("line-round-limit", PropertyKey::LineRoundLimit, layout, value);
+    layout.parse(value);
 }
 
 void LineLayer::parsePaints(const JSVal& layer) {
@@ -65,12 +88,7 @@ void LineLayer::recalculate(const StyleCalculationParameters& parameters) {
 std::unique_ptr<Bucket> LineLayer::createBucket(StyleBucketParameters& parameters) const {
     auto bucket = std::make_unique<LineBucket>();
 
-    const float z = parameters.tileID.z;
-
-    layout.calculate(PropertyKey::LineCap, bucket->layout.cap, z);
-    layout.calculate(PropertyKey::LineJoin, bucket->layout.join, z);
-    layout.calculate(PropertyKey::LineMiterLimit, bucket->layout.miter_limit, z);
-    layout.calculate(PropertyKey::LineRoundLimit, bucket->layout.round_limit, z);
+    layout.calculate(bucket->layout, parameters.tileID.z);
 
     parameters.eachFilteredFeature(filter, [&] (const auto& feature) {
         bucket->addGeometry(feature.getGeometries());

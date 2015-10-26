@@ -55,11 +55,6 @@ const std::map<PropertyKey, PropertyValue> PropertyFallbackValue::properties = {
     { PropertyKey::BackgroundOpacity, BackgroundPaintProperties().opacity },
     { PropertyKey::BackgroundColor, BackgroundPaintProperties().color },
 
-    { PropertyKey::LineCap, LineLayoutProperties().cap },
-    { PropertyKey::LineJoin, LineLayoutProperties().join },
-    { PropertyKey::LineMiterLimit, LineLayoutProperties().miter_limit },
-    { PropertyKey::LineRoundLimit, LineLayoutProperties().round_limit },
-
     { PropertyKey::SymbolPlacement, SymbolLayoutProperties().placement },
     { PropertyKey::SymbolSpacing, SymbolLayoutProperties().spacing },
     { PropertyKey::SymbolAvoidEdges, SymbolLayoutProperties().avoid_edges },

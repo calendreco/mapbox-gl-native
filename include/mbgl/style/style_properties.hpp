@@ -3,6 +3,8 @@
 
 #include <mbgl/style/types.hpp>
 
+#include <mapbox/optional.hpp>
+
 #include <array>
 #include <string>
 #include <vector>
@@ -44,14 +46,6 @@ public:
     inline bool isVisible() const {
         return opacity > 0 && color[3] > 0 && width > 0;
     }
-};
-
-class LineLayoutProperties {
-public:
-    CapType cap = CapType::Butt;
-    JoinType join = JoinType::Miter;
-    float miter_limit = 2.0f;
-    float round_limit = 1.0f;
 };
 
 class SymbolPaintProperties {
