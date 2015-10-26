@@ -1,4 +1,4 @@
-# Developing on OSX
+# Developing on OS X
 
 To create projects, you can run:
 

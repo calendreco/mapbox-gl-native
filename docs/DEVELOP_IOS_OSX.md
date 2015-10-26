@@ -1,4 +1,4 @@
-# Developing for iOS on OSX
+# Developing for iOS on OS X
 
 This process gives you a native iOS app for testing changes to mapbox-gl-native on a simulator or device. Normal, production use of the library is via a precompiled binary linked into the app target.
 

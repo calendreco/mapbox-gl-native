@@ -1,4 +1,4 @@
-# Developing for Android on OSX
+# Developing for Android on OS X
 
 Install Oracle JDK 7+, the Android SDK, and Android Studio:
 
