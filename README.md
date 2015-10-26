@@ -1,4 +1,4 @@
-# Mapbox GL (Native)
+# Mapbox GL Native
 
 [![Travis](https://api.travis-ci.org/mapbox/mapbox-gl-native.svg?branch=master)](https://travis-ci.org/mapbox/mapbox-gl-native/builds) [![Bitrise](https://www.bitrise.io/app/7514e4cf3da2cc57.svg?token=OwqZE5rSBR9MVWNr_lf4sA&branch=master)](https://www.bitrise.io/app/7514e4cf3da2cc57)
 
@@ -6,7 +6,7 @@ An OpenGL ES-based renderer for [Mapbox Vector Tiles](https://www.mapbox.com/blo
 
 **This repository is for development on Mapbox GL itself.**
 
-If you want to use products _based on_ Mapbox GL, check out: 
+If you want to use products _based on_ Mapbox GL, check out:
 
 - [Mapbox Mobile](http://mapbox.com/mobile) — iOS and Android native development libraries for vector maps in apps
 - [`react-native-mapbox-gl`](https://github.com/mapbox/react-native-mapbox-gl) — React Native library for vector maps in apps
@@ -15,4 +15,14 @@ If you want to use products _based on_ Mapbox GL, check out:
 
 --
 
-See [`INSTALL.md`](./INSTALL.md) for development setup and install instructions, including dependencies. 
+## Targets
+
+* Linux
+* OSX 10.9+
+* iOS 7.0+
+  * iPhone 4S and above (5, 5c, 5s, 6, 6 Plus)
+  * iPad 2 and above (3, 4, Mini, Air, Mini 2, Air 2)
+  * iPod touch 5th gen and above
+* Android 4.0+ (API level 14+)
+
+See [`INSTALL.md`](./INSTALL.md) for development setup and install instructions, including dependencies.
