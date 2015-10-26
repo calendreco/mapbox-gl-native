@@ -47,7 +47,7 @@ dependencies:
 
  - [`libcurl`](http://curl.haxx.se/libcurl/) (depends on OpenSSL)
 
-### Additional Dependencies for OSX
+### Additional Dependencies for OS X
 
  - Apple Command Line Tools (available at [Apple Developer](https://developer.apple.com/downloads))
  - [Homebrew](http://brew.sh)
@@ -59,11 +59,11 @@ dependencies:
 This depends on what operating system you're using, and what platform you're
 developing for:
 
-**on OSX**
+**on OS X**
 
-* [For OSX on OSX](docs/DEVELOP_OSX.md)
-* [For iOS on OSX](docs/DEVELOP_IOS_OSX.md)
-* [For Android on OSX](docs/DEVELOP_ANDROID_OSX.md)
+* [For OS X on OS X](docs/DEVELOP_OSX.md)
+* [For iOS on OS X](docs/DEVELOP_IOS_OSX.md)
+* [For Android on OS X](docs/DEVELOP_ANDROID_OSX.md)
 
 **on Linux**
 
