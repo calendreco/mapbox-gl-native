@@ -1,7 +1,7 @@
 Pod::Spec.new do |m|
 
   m.name    = 'Mapbox-iOS-SDK'
-  m.version = '2.1.2'
+  m.version = '2.1.3'
 
   m.summary          = 'Open source vector map solution for iOS with full styling capabilities.'
   m.description      = 'Open source OpenGL-based vector map solution for iOS with full styling capabilities and Cocoa bindings.'
@@ -13,7 +13,7 @@ Pod::Spec.new do |m|
   m.documentation_url = 'https://www.mapbox.com/ios-sdk/'
 
   m.source = {
-    :http => "http://mapbox.s3.amazonaws.com/mapbox-gl-native/ios/builds/mapbox-ios-sdk-#{m.version.to_s}.zip",
+    :http => "https://github.com/calendreco/mapbox-gl-native/releases/download/2.1.3/mapbox-ios-sdk.zip",
     :flatten => true
   }
 
