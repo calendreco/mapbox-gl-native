@@ -43,6 +43,7 @@ void AnnotationManager::removeAnnotation(const AnnotationID& id) {
         symbolTree.remove(symbolAnnotations.at(id));
         symbolAnnotations.erase(id);
     } else if (shapeAnnotations.find(id) != shapeAnnotations.end()) {
+        shapeTree.remove(shapeAnnotations.at(id));
         obsoleteShapeAnnotationLayers.push_back(shapeAnnotations.at(id)->layerID);
         shapeAnnotations.erase(id);
     }
@@ -55,18 +56,21 @@ void AnnotationManager::add(const AnnotationID& id, const SymbolAnnotation& anno
 }
 
 void AnnotationManager::add(const AnnotationID& id, const LineAnnotation& annotation, const uint8_t maxZoom) {
-    shapeAnnotations.emplace(id,
-        std::make_unique<LineAnnotationImpl>(id, annotation, maxZoom));
+    auto impl = std::make_shared<LineAnnotationImpl>(id, annotation, maxZoom);
+    shapeTree.insert(impl);
+    shapeAnnotations.emplace(id, impl);
 }
 
 void AnnotationManager::add(const AnnotationID& id, const FillAnnotation& annotation, const uint8_t maxZoom) {
-    shapeAnnotations.emplace(id,
-        std::make_unique<FillAnnotationImpl>(id, annotation, maxZoom));
+    auto impl = std::make_shared<FillAnnotationImpl>(id, annotation, maxZoom);
+    shapeTree.insert(impl);
+    shapeAnnotations.emplace(id, impl);
 }
 
 void AnnotationManager::add(const AnnotationID& id, const StyleSourcedAnnotation& annotation, const uint8_t maxZoom) {
-    shapeAnnotations.emplace(id,
-        std::make_unique<StyleSourcedAnnotationImpl>(id, annotation, maxZoom));
+    auto impl = std::make_shared<StyleSourcedAnnotationImpl>(id, annotation, maxZoom);
+    shapeTree.insert(impl);
+    shapeAnnotations.emplace(id, impl);
 }
 
 AnnotationIDs AnnotationManager::getPointAnnotationsInBounds(const LatLngBounds& bounds) const {
@@ -77,6 +81,17 @@ AnnotationIDs AnnotationManager::getPointAnnotationsInBounds(const LatLngBounds&
             result.push_back(val->id);
         }));
 
+    return result;
+}
+
+AnnotationIDs AnnotationManager::getShapeAnnotationsInBounds(const LatLngBounds& bounds) const {
+    AnnotationIDs result;
+
+    shapeTree.query(boost::geometry::index::intersects(bounds),
+        boost::make_function_output_iterator([&](const auto& val){
+            result.push_back(val->id);
+        }));
+    
     return result;
 }
 

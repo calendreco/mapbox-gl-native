@@ -148,6 +148,7 @@ public:
     void removeAnnotation(AnnotationID);
 
     AnnotationIDs getPointAnnotationsInBounds(const LatLngBounds&);
+    AnnotationIDs getShapeAnnotationsInBounds(const LatLngBounds&);
 
     void addLayer(std::unique_ptr<style::Layer>, const optional<std::string>& beforeLayerID = {});
     void removeLayer(const std::string& layerID);
