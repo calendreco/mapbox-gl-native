@@ -100,8 +100,11 @@ static NSString * const MGLInvisibleStyleMarkerSymbolName = @"invisible_marker";
 /// with style-defined sprites.
 NSString *const MGLAnnotationSpritePrefix = @"com.mapbox.sprites.";
 
-/// Slop area around the hit testing point, allowing for imprecise annotation selection.
+/// Slop area around the hit testing point for pin annotations, allowing for imprecise annotation selection.
 const CGFloat MGLAnnotationImagePaddingForHitTest = 5;
+
+/// Slop area around the hit testing point for shape annotations, allowing for imprecise annotation selection.
+const CGFloat MGLAnnotationShapePaddingForHitTest = 10;
 
 /// Distance from the callout’s anchor point to the annotation it points to.
 const CGFloat MGLAnnotationImagePaddingForCallout = 1;
@@ -3270,7 +3273,11 @@ mbgl::Duration MGLDurationInSeconds(NSTimeInterval duration)
             else if ([annotation isKindOfClass:[MGLMultiPoint class]])
             {
                 MGLMultiPoint *multiPoint = (MGLMultiPoint *)annotationContext.annotation;
-                return !(multiPoint.enabled && [multiPoint isWithinDistance:MGLAnnotationImagePaddingForHitTest ofPoint:point transform:transform]);
+                CGFloat padding = MGLAnnotationShapePaddingForHitTest;
+                if ([annotation isKindOfClass:[MGLPolyline class]]) {
+                    padding += [self lineWidthForPolylineAnnotation:(MGLPolyline *)annotation] / 2.0;
+                }
+                return !(multiPoint.enabled && [multiPoint isWithinDistance:padding ofPoint:point transform:transform]);
             }
             else
             {
